@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+<!-- List View -->
+  <record id="hs_code_default_list_view" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_sequence" widget="handle"/>
+        <field name="x_name"/>
+        <field name="x_code"/>
+      </list>
+    </field>
+    <field name="model">x_hs_codes</field>
+    <field name="name">Default list view for x_hs_codes</field>
+    <field name="type">list</field>
+  </record>
+  <!-- Form View -->
+  <record id="hs_code_default_form_view" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="HS Codes">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+            <group>            
+              <field name="x_name" required="1" placeholder="Name"/>
+              <field name="x_code" required="1" placeholder="Code"/>
+            </group>
+          </div>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="model">x_hs_codes</field>
+    <field name="name">Default form view for x_hs_codes</field>
+    <field name="type">form</field>
+  </record>
+  <!-- Search View -->
+  <record id="hs_codes_default_search_view" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_hs_codes" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+    <field name="model">x_hs_codes</field>
+    <field name="name">Default search view for x_hs_codes</field>
+    <field name="type">search</field>
+  </record>  
+  <!-- Add HS Code to Products form view -->
+  <record id="hs_code_view_form_product_template" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_general']/field[@name='type']" position="after">
+          <field name="x_hs_code" options="{'create_name_field': 'x_name'}"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">HS Code: product.template.product.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <!-- Add HS Code to Products variant form view -->
+  <record id="hs_code_view_form_product" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_general']/field[@name='type']" position="after">
+          <field name="x_hs_code" force_save="1" readonly="True"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_normal_form_view"/>
+    <field name="mode">extension</field>
+    <field name="model">product.product</field>
+    <field name="name">HS Code: product.product.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <!-- Add HS Code to Qoutations view -->
+  <record id="hs_code_view_form_sale_order" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='product_template_id']" position="after">
+          <field optional="show" name="x_hs_code" options="{'create_name_field': 'x_name'}"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="mode">extension</field>
+    <field name="model">sale.order</field>
+    <field name="name">HS Code: sale.order.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <!-- Add HS Code to Invoices list view -->
+  <record id="hs_code_view_form_account_move" model="ir.ui.view" >
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='invoice_tab']/field[@name='invoice_line_ids']/list[1]/field[@name='product_id']" position="after">
+          <field optional="show" name="x_hs_code" options="{'create_name_field': 'x_name'}"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="mode">extension</field>
+    <field name="model">account.move</field>
+    <field name="name">HS Code: account.move.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+</odoo>

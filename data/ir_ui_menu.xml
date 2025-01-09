@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="inventory_hs_codes_menu" model="ir.ui.menu" >
+    <field name="action" ref="hs_code_action_act_window"/>
+    <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]"/>
+    <field name="name">HS Codes</field>
+    <field name="parent_id" ref="stock.menu_stock_config_settings"/>
+    <field name="sequence">1</field>
+  </record>
+</odoo>

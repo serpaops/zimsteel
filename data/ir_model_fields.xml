@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="description_hs_code" model="ir.model.fields">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Name</field>
+    <field name="model">x_hs_codes</field>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="active_hs_code_field" model="ir.model.fields">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_hs_codes</field>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="sequence_hs_code_field" model="ir.model.fields">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_hs_codes</field>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">x_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="code_hs_code_field" model="ir.model.fields">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Code</field>
+    <field name="model">x_hs_codes</field>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">x_code</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+
+    <!-- SQL Constraint for Uniqueness -->
+  <!-- <record id="hs_codes_sql_constraints" model="ir.model.constraint">
+    <field name="name">unique_x_code</field>
+    <field name="model">x_hs_codes</field>
+    <field name="model_id" ref="zimsteel.hs_codes_model"/>
+    <field name="definition">UNIQUE (x_code)</field>
+    <field name="type">sql</field>
+  </record> -->
+
+  <record id="hs_code_many2one" model="ir.model.fields">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">HS Code</field>
+    <field name="model">product.template</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="name">x_hs_code</field>
+    <field name="relation">x_hs_codes</field>
+  </record>
+  <record id="hs_code_many2one_sales" model="ir.model.fields">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Many2One</field>
+    <field name="model">sale.order.line</field>
+    <field name="model_id" ref="sale.model_sale_order_line"/>
+    <field name="name">x_hs_code</field>
+    <field name="relation">x_hs_codes</field>
+  </record>
+  <record id="has_code_many2one_invoice" model="ir.model.fields">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">HS Code</field>
+    <field name="model">account.move.line</field>
+    <field name="model_id" ref="account.model_account_move_line"/>
+    <field name="name">x_hs_code</field>
+    <field name="relation">x_hs_codes</field>
+  </record>
+
+
+</odoo>

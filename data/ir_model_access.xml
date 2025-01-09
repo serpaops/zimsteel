@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="hs_codes_group_rights" model="ir.model.access" >
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">HS Codes group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="hs_codes_group_user_rights" model="ir.model.access" >
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="hs_codes_model"/>
+    <field name="name">HS Codes group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+    <!-- Server Action to Check Uniqueness -->
+    <record id="hs_codes_uniqueness_server_action" model="ir.actions.server">
+        <field name="name">Check HS Code Uniqueness</field>
+        <field name="binding_type">action</field>
+        <field name="child_ids" eval="[(6, 0, [])]"/>
+        <field name="sequence">1</field>
+        <field name="model_id" ref="zimsteel.hs_codes_model"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+# Ensure the HS Code is provided
+if not record.x_code:
+    raise UserError("HS Code cannot be empty.")
+
+# Clean up the code for comparison
+cleaned_code = record.x_code.strip()
+
+# Check for duplicates
+duplicate = env['x_hs_codes'].search([
+    ('x_code', '=', cleaned_code),
+    ('id', '!=', record.id)  # Exclude the current record
+], limit=1)
+
+if duplicate:
+    raise UserError(("HS Code '%s' already exists in the system.") % cleaned_code)
+        ]]>
+        </field>
+    </record>
+
+    <!-- Automation to Trigger the Server Action -->
+    <record id="hs_codes_uniqueness_automation" model="base.automation">
+        <field name="name">Enforce HS Code Uniqueness</field>
+        <field name="model_id" ref="zimsteel.hs_codes_model"/>
+        <field name="trigger">on_create_or_write</field>
+        <field name="action_server_ids" eval="[(6, 0, ref('hs_codes_uniqueness_server_action'))]"/>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">[]</field> <!-- Run for all records -->
+    </record>
+</odoo>

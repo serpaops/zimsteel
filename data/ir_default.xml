@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="active_hs_code_default" model="ir.default" >
+    <field name="field_id" ref="active_hs_code_field"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="sequence_hs_code_default" model="ir.default" >
+    <field name="field_id" ref="sequence_hs_code_field"/>
+    <field name="json_value">10</field>
+  </record>
+</odoo>

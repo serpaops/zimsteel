@@ -18,15 +18,23 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'sale', 'product'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'models/custom_fields.xml',
-        'data/form_view.xml',
-        'views/views.xml',
+        # 'models/custom_fields.xml',
+        # 'data/form_view.xml',
+        # 'views/views.xml',
         'views/templates.xml',
+        'data/ir_model.xml',
+        'data/ir_model_fields.xml',
+        'data/ir_ui_view.xml',
+        'data/ir_actions_act_window.xml',
+        'data/ir_ui_menu.xml',
+        'data/ir_model_access.xml',
+        'data/ir_default.xml',     
+        'actions/server.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
