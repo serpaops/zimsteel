@@ -62,7 +62,7 @@
   <record id="hs_code_many2one_sales" model="ir.model.fields">
     <field name="ttype">many2one</field>
     <field name="copied" eval="True"/>
-    <field name="field_description">New Many2One</field>
+    <field name="field_description">HS Code</field>
     <field name="model">sale.order.line</field>
     <field name="model_id" ref="sale.model_sale_order_line"/>
     <field name="name">x_hs_code</field>
