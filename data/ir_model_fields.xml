@@ -41,15 +41,6 @@
     <field name="on_delete" eval="False"/>
   </record>
 
-    <!-- SQL Constraint for Uniqueness -->
-  <!-- <record id="hs_codes_sql_constraints" model="ir.model.constraint">
-    <field name="name">unique_x_code</field>
-    <field name="model">x_hs_codes</field>
-    <field name="model_id" ref="zimsteel.hs_codes_model"/>
-    <field name="definition">UNIQUE (x_code)</field>
-    <field name="type">sql</field>
-  </record> -->
-
   <record id="hs_code_many2one" model="ir.model.fields">
     <field name="ttype">many2one</field>
     <field name="copied" eval="True"/>

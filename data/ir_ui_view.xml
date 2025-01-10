@@ -86,7 +86,7 @@
     <field name="arch" type="xml">
       <data>
         <xpath expr="//field[@name='product_template_id']" position="after">
-          <field optional="show" name="x_hs_code" options="{'create_name_field': 'x_name'}"/>
+          <field optional="show" name="x_hs_code" domain="[('x_code', '=', 'product_template_id.x_hs_code')]"/>
         </xpath>
       </data>
     </field>
@@ -102,7 +102,7 @@
     <field name="arch" type="xml">
       <data>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='invoice_tab']/field[@name='invoice_line_ids']/list[1]/field[@name='product_id']" position="after">
-          <field optional="show" name="x_hs_code" options="{'create_name_field': 'x_name'}"/>
+          <field optional="show" name="x_hs_code"  domain="[('x_code', '=', 'product_id.x_hs_code')]"/>
         </xpath>
       </data>
     </field>
