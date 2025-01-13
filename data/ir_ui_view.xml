@@ -113,4 +113,24 @@
     <field name="priority">160</field>
     <field name="type">form</field>
   </record>
+
+  <!-- Rename company_registry on form view in company information -->
+  <record id="company_view_renamed" model="ir.ui.view">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='vat']" position="attributes">
+          <attribute name="string">VAT No.</attribute>
+        </xpath>
+        <xpath expr="//field[@name='company_registry']" position="attributes">
+          <attribute name="string">TIN No.</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="base.view_company_form"/>
+    <field name="mode">extension</field>
+    <field name="model">res.company</field>
+    <field name="name"> Renamed Labels: res.company.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>  
 </odoo>

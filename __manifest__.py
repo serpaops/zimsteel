@@ -2,14 +2,19 @@
 {
     'name': "zimsteel",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "Module for invoice and qoutation for the client Zimsteel",
 
     'description': """
-Long description of module's purpose
+    Module for Zimsteel
+    ===================
+
+    This module is specific to SERPA and its client Zimsteel. It provides customizations
+    to the invoice and quotation reports.
+    
     """,
 
     'author': "SERPA",
-    'website': "https://www.yourcompany.com",
+    'website': "https://github.com/serpaops/zimsteel",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -22,11 +27,6 @@ Long description of module's purpose
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'models/custom_fields.xml',
-        # 'data/form_view.xml',
-        # 'views/views.xml',
-        'views/templates.xml',
         'data/ir_model.xml',
         'data/ir_model_fields.xml',
         'data/ir_ui_view.xml',
@@ -35,6 +35,8 @@ Long description of module's purpose
         'data/ir_model_access.xml',
         'data/ir_default.xml',     
         'actions/server.xml',
+        'views/views.xml',
+        'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
