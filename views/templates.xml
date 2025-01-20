@@ -4,7 +4,7 @@
     <!-- report for custom invoice -->
     <template id="invoice_template" t-name="zimsteel.invoice_template">
         <t t-call="web.html_container">
-            <t t-call="web.external_layout_striped">
+            <t t-call="web.basic_layout">
                 <!-- Set the company context -->
                 <t t-if="not o" t-set="o" t-value="doc"/>
 
@@ -32,6 +32,8 @@
                             <li><t t-esc="company.name or ''"/></li>
                             <li><t t-esc="company.partner_id.street or ''"/></li>
                             <li><t t-esc="company.partner_id.city or ''"/></li>
+                            <li>Phone:<t t-esc="company.partner_id.phone"/></li>
+                            <li>Email:<t t-esc="company.partner_id.email"/></li>                            
                             <li>TIN No:<t t-esc="company.partner_id.company_registry or ''"/></li>
                             <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
                             
@@ -41,7 +43,7 @@
                     </div>                    
                 </header>                
                <t t-foreach="docs" t-as="o">
-                    <div class="page" style="font-family: sans-serif; font-size: 24px;">
+                    <div class="page" style="font-family: sans-serif; font-size: 22px;">
                         
                         <div style="row">
                             <div class="col-6">
@@ -49,6 +51,8 @@
                                     <li><t t-esc="o.partner_id.name"/></li>
                                     <li><t t-esc="o.partner_id.street"/></li>
                                     <li><t t-esc="o.partner_id.city"/></li>
+                                    <li>Phone:<t t-esc="doc.partner_id.phone"/></li>
+                                    <li>Email:<t t-esc="doc.partner_id.email"/></li>                                    
                                     <li>TIN No:<t t-esc="o.partner_id.company_registry"/></li>
                                     <li>VAT No:<t t-esc="o.partner_id.vat"/></li>
                                 </ul>
@@ -73,14 +77,14 @@
                                     <span style="font-weight: bold; display: block;">Salesperson:</span> <t t-esc="o.invoice_user_id.name"/>
                                 </div>                          
                             </div>
-                            <table style="width: 100%; border-collapse: collapse; border: 0.5px solid black;">
-                                <thead>
+                            <table class="py-5" style="width: 100%; border-collapse: collapse; border: 0.5px solid black;">
+                                <thead class="text-bold">
                                     <tr>
                                         <th style="border: 0.5px solid black; text-align: left;">Product</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Quantity</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Unit Price</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Tax</th>
-                                        <th style="border: 0.5px solid black; text-align: right;">Subtotal</th>
+                                        <th style="border: 0.5px solid black; text-align: right;">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,21 +115,21 @@
                                         </td>
                                     </tr>
                                     <!-- Subtotals -->
-                                    <tr>
+                                    <tr class="text-end">
                                         <td style="border: 0.5px solid black;" colspan="3"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Subtotal</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_untaxed"/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-end">
                                         <td style="border: 0.5px solid black;" colspan="3"/>
                                         <td style="border: 0.5px solid black; text-align: right;">Tax</td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_tax"/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-end">
                                         <td style="border: 0.5px solid black;" colspan="3"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Total</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
@@ -137,7 +141,7 @@
                         </div>
                         
                     </div>
-                    <footer class="footer" style="font-size: 21px;">
+                    <footer class="footer" style="font-size: 21px;page-break-inside: avoid;">
                             <!-- Banking details-->
                             <div class="row">
                                 <div class="col-6">
@@ -214,6 +218,8 @@
                         <li><t t-esc="company.name or ''"/></li>
                         <li><t t-esc="company.partner_id.street or ''"/></li>
                         <li><t t-esc="company.partner_id.city or ''"/></li>
+                        <li>Phone No:<t t-esc="company.partner_id.phone"/></li>
+                        <li>Email:<t t-esc="company.partner_id.email"/></li>                        
                         <li>TIN No:<t t-esc="company.partner_id.company_registry or ''"/></li>
                         <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
                     </ul>
@@ -222,7 +228,7 @@
                     </div>                    
                 </header>
                 <br/>
-                <div class="page" style="font-family: sans-serif; font-size: 24px;">
+                <div class="page" style="font-family: sans-serif; font-size: 22px;">
                     <t t-foreach="docs" t-as="doc">
                         <!-- Customer address -->
                         <div class="row">
@@ -231,6 +237,8 @@
                                     <li><t t-esc="doc.partner_id.name"/></li>
                                     <li><t t-esc="doc.partner_id.street"/></li>
                                     <li><t t-esc="doc.partner_id.city"/></li>
+                                    <li>Phone No<t t-esc="doc.partner_id.phone"/></li>
+                                    <li>Email: <t t-esc="doc.partner_id.email"/></li>
                                     <li>TIN No:<t t-esc="doc.partner_id.company_registry"/></li>
                                     <li>VAT No:<t t-esc="doc.partner_id.vat"/></li>
                                 </ul>
@@ -258,14 +266,14 @@
 
                         <!-- Sale order lines -->
 
-                        <table class="table table-bordered table-striped">
+                        <table class="py-5 table table-bordered table-striped">
                             <thead>
-                                <tr>
+                                <tr class="text-bold">
                                     <th class="border-black text-start">Description</th>
                                     <th class="border-black text-end">Quantity</th>
                                     <th class="border-black text-end">Unit Price</th>
                                     <th class="border-black text-end">Taxes</th>
-                                    <th class="border-black text-end">Amount</th>
+                                    <th class="border-black text-end">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -302,7 +310,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <footer class="footer" style="font-size: 21px;">
+                        <footer class="footer" style="page-break-after: avoid;font-size: 21px;">
                             <!-- Banking details-->
                             <div class="row">
                                 <div class="col-6">
@@ -345,8 +353,7 @@
 
                         </footer>
                     </t>
-                </div>                
-
+                </div>    
             </t>
         </t>
     </template>
