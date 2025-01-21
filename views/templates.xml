@@ -34,8 +34,12 @@
                             <li><t t-esc="company.partner_id.city or ''"/></li>
                             <li>Phone:<t t-esc="company.partner_id.phone"/></li>
                             <li>Email:<t t-esc="company.partner_id.email"/></li>                            
-                            <li>TIN No:<t t-esc="company.partner_id.company_registry or ''"/></li>
-                            <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
+                            <t t-if="company.partner_id.company_registry">                         
+                                <li>TIN No:<t t-esc="company.partner_id.company_registry"/></li>
+                            </t>
+                            <t t-if="company.partner_id.vat">
+                                <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
+                            </t>
                             
                         </ul>
                     </div>
@@ -51,10 +55,14 @@
                                     <li><t t-esc="o.partner_id.name"/></li>
                                     <li><t t-esc="o.partner_id.street"/></li>
                                     <li><t t-esc="o.partner_id.city"/></li>
-                                    <li>Phone:<t t-esc="doc.partner_id.phone"/></li>
-                                    <li>Email:<t t-esc="doc.partner_id.email"/></li>                                    
-                                    <li>TIN No:<t t-esc="o.partner_id.company_registry"/></li>
-                                    <li>VAT No:<t t-esc="o.partner_id.vat"/></li>
+                                    <li>Phone:<t t-esc="o.partner_id.phone"/></li>
+                                    <li>Email:<t t-esc="o.partner_id.email"/></li>                                    
+                                    <t t-if="o.partner_id.company_registry">                         
+                                        <li>TIN No:<t t-esc="o.partner_id.company_registry"/></li>
+                                    </t>
+                                    <t t-if="o.partner_id.vat">
+                                        <li>VAT No:<t t-esc="o.partner_id.vat or ''"/></li>
+                                    </t>
                                 </ul>
                             </div>
                         </div>
@@ -81,6 +89,7 @@
                                 <thead class="text-bold">
                                     <tr>
                                         <th style="border: 0.5px solid black; text-align: left;">Product</th>
+                                        <th style="border: 0.5px solid black; text-align: center;">HS Code</th>                                        
                                         <th style="border: 0.5px solid black; text-align: center;">Quantity</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Unit Price</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Tax</th>
@@ -92,6 +101,9 @@
                                         <td style="border: 0.5px solid black; text-align: left;">
                                             <t t-esc="line.product_id.name"/>
                                         </td>
+                                        <td style="border: 0.5px solid black; text-align: center;">
+                                            <t t-esc="line.x_hs_code.x_code"/>
+                                        </td>                                        
                                         <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-esc="line.quantity"/>
                                         </td>
@@ -109,28 +121,29 @@
                                     </tr>
     
                                     <tr>
-                                        <td style="border: 0.5px solid black;" colspan="4">Total</td>
+                                        <td style="border: 0.5px solid black; text-align: right;" colspan="4"/>
+                                        <td style="border: 0.5px solid black; text-align: right;">Total</td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <t t-esc="o.amount_total"/>
                                         </td>
                                     </tr>
                                     <!-- Subtotals -->
                                     <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="3"/>
+                                        <td style="border: 0.5px solid black;" colspan="4"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Subtotal</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_untaxed"/>
                                         </td>
                                     </tr>
                                     <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="3"/>
+                                        <td style="border: 0.5px solid black;" colspan="4"/>
                                         <td style="border: 0.5px solid black; text-align: right;">Tax</td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_tax"/>
                                         </td>
                                     </tr>
                                     <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="3"/>
+                                        <td style="border: 0.5px solid black;" colspan="4"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Total</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_total"/>
@@ -184,13 +197,12 @@
                     </footer>
                 </t>
             </t>
-        </t>
+        </t>   
     </template>
 
     <!-- report for custom qoutattion -->
     <template id="quotation_template" t-name="zimsteel.quotation_template">
-        <t t-call="web.html_container">
-            <t t-call="web.external_layout_striped">
+        <t t-call="web.basic_layout">
                 <!-- Set the company context -->
                 <t t-if="not o" t-set="o" t-value="doc"/>
 
@@ -220,8 +232,12 @@
                         <li><t t-esc="company.partner_id.city or ''"/></li>
                         <li>Phone No:<t t-esc="company.partner_id.phone"/></li>
                         <li>Email:<t t-esc="company.partner_id.email"/></li>                        
-                        <li>TIN No:<t t-esc="company.partner_id.company_registry or ''"/></li>
-                        <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
+                        <t t-if="company.partner_id.company_registry">                         
+                            <li>TIN No:<t t-esc="company.partner_id.company_registry"/></li>
+                        </t>
+                        <t t-if="company.partner_id.vat">
+                            <li>VAT No:<t t-esc="company.partner_id.vat or ''"/></li>
+                        </t>
                     </ul>
                 </div>
                         </div>
@@ -239,8 +255,12 @@
                                     <li><t t-esc="doc.partner_id.city"/></li>
                                     <li>Phone No<t t-esc="doc.partner_id.phone"/></li>
                                     <li>Email: <t t-esc="doc.partner_id.email"/></li>
-                                    <li>TIN No:<t t-esc="doc.partner_id.company_registry"/></li>
-                                    <li>VAT No:<t t-esc="doc.partner_id.vat"/></li>
+                                    <t t-if="company.partner_id.company_registry">                         
+                                        <li>TIN No:<t t-esc="doc.partner_id.company_registry"/></li>
+                                    </t>
+                                    <t t-if="company.partner_id.vat">
+                                        <li>VAT No:<t t-esc="doc.partner_id.vat or ''"/></li>
+                                    </t>
                                 </ul>
                             </div>
                         </div>
@@ -270,6 +290,7 @@
                             <thead>
                                 <tr class="text-bold">
                                     <th class="border-black text-start">Description</th>
+                                    <th style="border-black text-end">HS Code</th>
                                     <th class="border-black text-end">Quantity</th>
                                     <th class="border-black text-end">Unit Price</th>
                                     <th class="border-black text-end">Taxes</th>
@@ -280,6 +301,9 @@
                                 <t t-foreach="doc.order_line" t-as="line">
                                     <tr>
                                         <td class="text-start"><t t-esc="line.product_id.display_name"/></td>
+                                        <td style="border: 0.5px solid black; text-align: center;">
+                                            <t t-esc="line.x_hs_code.x_code"/>
+                                        </td>                                        
                                         <td class="text-end"><t t-esc="line.product_uom_qty"/></td>
                                         <td class="text-end"><t t-esc="line.price_unit"/></td>
                                         <td class="text-end">
@@ -293,17 +317,17 @@
                                 
                                 <!-- Subtotals -->
                                 <tr>
-                                    <td colspan="3"/>
+                                    <td colspan="4"/>
                                     <td class="text-end"><b>Subtotal</b></td>
                                     <td class="text-end"><span t-esc="doc.amount_untaxed"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"/>
+                                    <td colspan="4"/>
                                     <td class="text-end">Tax</td>
                                     <td class="text-end"><span t-esc="doc.amount_tax"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"/>
+                                    <td colspan="4"/>
                                     <td class="text-end"><b>Total</b></td>
                                     <td class="text-end"><span t-esc="doc.amount_total"/></td>
                                 </tr>                                
@@ -353,8 +377,8 @@
 
                         </footer>
                     </t>
-                </div>    
+                </div>                
+
             </t>
-        </t>
     </template>
 </odoo>
