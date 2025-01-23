@@ -89,10 +89,10 @@
                                 <thead class="text-bold">
                                     <tr>
                                         <th style="border: 0.5px solid black; text-align: left;">Product</th>
-                                        <th style="border: 0.5px solid black; text-align: center;">HS Code</th>                                        
+                                        <!-- <th style="border: 0.5px solid black; text-align: center;">HS Code</th>                                         -->
                                         <th style="border: 0.5px solid black; text-align: center;">Quantity</th>
                                         <th style="border: 0.5px solid black; text-align: center;">Unit Price</th>
-                                        <th style="border: 0.5px solid black; text-align: center;">Tax</th>
+                                        <!-- <th style="border: 0.5px solid black; text-align: center;">Tax</th> -->
                                         <th style="border: 0.5px solid black; text-align: right;">Amount</th>
                                     </tr>
                                 </thead>
@@ -101,27 +101,27 @@
                                         <td style="border: 0.5px solid black; text-align: left;">
                                             <t t-esc="line.product_id.name"/>
                                         </td>
-                                        <td style="border: 0.5px solid black; text-align: center;">
+                                        <!-- <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-esc="line.x_hs_code.x_code"/>
-                                        </td>                                        
+                                        </td>                                         -->
                                         <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-esc="line.quantity"/>
                                         </td>
                                         <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-esc="line.price_unit"/>
                                         </td>
-                                        <td style="border: 0.5px solid black; text-align: center;">
+                                        <!-- <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-foreach="line.tax_ids" t-as="tax">
                                                 <span t-esc="tax.name"/>
                                             </t>
-                                        </td>
+                                        </td> -->
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <t t-esc="line.price_subtotal"/>
                                         </td>
                                     </tr>
     
                                     <tr>
-                                        <td style="border: 0.5px solid black; text-align: right;" colspan="4"/>
+                                        <td style="border: 0.5px solid black; text-align: right;" colspan="2"/>
                                         <td style="border: 0.5px solid black; text-align: right;">Total</td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <t t-esc="o.amount_total"/>
@@ -129,21 +129,21 @@
                                     </tr>
                                     <!-- Subtotals -->
                                     <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="4"/>
+                                        <td style="border: 0.5px solid black;" colspan="2"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Subtotal</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_untaxed"/>
                                         </td>
                                     </tr>
-                                    <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="4"/>
+                                    <!-- <tr class="text-end">
+                                        <td style="border: 0.5px solid black;" colspan="2"/>
                                         <td style="border: 0.5px solid black; text-align: right;">Tax</td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_tax"/>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr class="text-end">
-                                        <td style="border: 0.5px solid black;" colspan="4"/>
+                                        <td style="border: 0.5px solid black;" colspan="2"/>
                                         <td style="border: 0.5px solid black; text-align: right;"><b>Total</b></td>
                                         <td style="border: 0.5px solid black; text-align: right;">
                                             <span t-esc="o.amount_total"/>
@@ -290,10 +290,10 @@
                             <thead>
                                 <tr class="text-bold">
                                     <th class="border-black text-start">Description</th>
-                                    <th style="border-black text-end">HS Code</th>
+                                    <!-- <th style="border-black text-end">HS Code</th> -->
                                     <th class="border-black text-end">Quantity</th>
                                     <th class="border-black text-end">Unit Price</th>
-                                    <th class="border-black text-end">Taxes</th>
+                                    <!-- <th class="border-black text-end">Taxes</th> -->
                                     <th class="border-black text-end">Total</th>
                                 </tr>
                             </thead>
@@ -301,33 +301,33 @@
                                 <t t-foreach="doc.order_line" t-as="line">
                                     <tr>
                                         <td class="text-start"><t t-esc="line.product_id.display_name"/></td>
-                                        <td style="border: 0.5px solid black; text-align: center;">
+                                        <!-- <td style="border: 0.5px solid black; text-align: center;">
                                             <t t-esc="line.x_hs_code.x_code"/>
-                                        </td>                                        
+                                        </td>                                         -->
                                         <td class="text-end"><t t-esc="line.product_uom_qty"/></td>
                                         <td class="text-end"><t t-esc="line.price_unit"/></td>
-                                        <td class="text-end">
+                                        <!-- <td class="text-end">
                                             <t t-foreach="line.tax_id" t-as="tax">
                                                 <span t-esc="tax.name"/>
                                             </t>
-                                        </td>
+                                        </td> -->
                                         <td class="text-end"><t t-esc="line.price_total"/></td>
                                     </tr>
                                 </t>
                                 
                                 <!-- Subtotals -->
                                 <tr>
-                                    <td colspan="4"/>
+                                    <td colspan="2"/>
                                     <td class="text-end"><b>Subtotal</b></td>
                                     <td class="text-end"><span t-esc="doc.amount_untaxed"/></td>
                                 </tr>
-                                <tr>
-                                    <td colspan="4"/>
+                                <!-- <tr>
+                                    <td colspan="2"/>
                                     <td class="text-end">Tax</td>
                                     <td class="text-end"><span t-esc="doc.amount_tax"/></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
-                                    <td colspan="4"/>
+                                    <td colspan="2"/>
                                     <td class="text-end"><b>Total</b></td>
                                     <td class="text-end"><span t-esc="doc.amount_total"/></td>
                                 </tr>                                
